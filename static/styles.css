@@ -1,0 +1,189 @@
+/* Body background and base text */
+body {
+    color: #2c2c2c;
+    font-family: 'Georgia', serif;
+}
+
+body::before {
+    content: "";
+    background-image: url("../static/images/Brittany_film.jpg");
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-attachment: fixed;
+    opacity: 0.9;
+    position: fixed;
+    top: 0; left: 0; right: 0; bottom: 0;
+    z-index: -1;  /* Sends it behind body content */
+}
+
+/* Buttons */
+.btn {
+    background-color: #c8a978;
+    color: #f9f7f1;
+    margin: 0.25rem;
+}
+
+.btn:hover {
+    background-color: #964b00;
+    color: #f9f7f1;
+    border-color: #964b00;
+}
+
+/* Containers */
+.container {
+    background-color: #f0ede7;
+    width: 90%;
+    max-width: 1200px;
+    margin: 2rem auto;
+    padding: 0.5rem 1.5rem;
+    border: none;
+    border-radius: 10px;
+}
+
+.about-container {
+    max-width: 1000px;
+}
+
+.fiction-nav-container {
+    background-color: #eeeeee;
+    padding: 0;
+    border-radius: 10px;
+    margin: auto;
+}
+
+.fiction-container {
+    max-width: 1000px;
+}
+
+#contact-container {
+    max-width: 600px;
+}
+
+/* Cards */
+.contact-card {
+    background-color: #f9f7f1;
+    border: 1px solid #c8a978;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.contact-card:hover {
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+}
+
+.writing-card {
+    background-color: #f9f7f1;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.writing-card:hover {
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+    transform: scale(1.02);
+}
+
+/* Navbar */
+.navbar {
+    background-color: #f0ede7;
+}
+
+.navbar-brand:hover {
+    background-color: #964b00;
+    color: #f9f7f1;
+    border-color: #964b00;
+}
+
+.nav-link.active {
+    background-color: #c8a978;
+    color: #f9f7f1 !important;
+    font-weight: bold;
+}
+
+.nav-link:hover {
+    background-color: #c8a978;
+    color: #f9f7f1;
+}
+
+/* Links */
+a {
+    color: #496497;
+    text-decoration: none;
+    transition: color 0.3s ease, transform 0.3s ease;
+}
+
+a:hover {
+    color: #964b00;
+}
+
+.about-link {
+    position: relative;
+    display: inline-block;
+}
+
+.about-link::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    height: 2px;
+    width: 100%;
+    background-color: #c8a978;
+    transform: scaleX(0);
+    transform-origin: center;
+    transition: transform 0.5s ease;
+}
+
+.about-link:hover::after {
+    transform: scaleX(1);
+}
+
+/* Footer */
+.footer {
+    background-color: #f0ede7;
+    color: #444444;
+}
+
+/* Headings */
+h1, h2, h3, h4, h5 {
+    color: #2c2c2c;
+    font-family: 'Palatino Linotype', 'Book Antiqua', 'Palatino', serif;
+    padding: 0.25rem 0 0.5rem 0;
+    display: inline-block; /* Will limit hover to text area */
+    position: relative;
+    transition: color 0.5s ease;
+}
+
+h1::after,
+h2::after,
+h3::after,
+h4::after,
+h5::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    height: 3px;
+    width: 100%;
+    background-color: #c8a978;
+    transform: scaleX(1);
+    transform-origin: center;
+    transition: transform 0.5s ease;
+}
+
+h1:hover::after,
+h2:hover::after,
+h3:hover::after,
+h4:hover::after,
+h5:hover::after {
+    transform: scaleX(0);
+}
+
+/* Transitions */
+body.fade-out {
+    opacity: 0;
+    transition: opacity 0.5s ease-out;
+}
+
+body.fade-in {
+    opacity: 1;
+    transition: opacity 0.5s ease-in;
+}
