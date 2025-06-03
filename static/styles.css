@@ -6,7 +6,7 @@ body {
 
 body::before {
     content: "";
-    background-image: url("../static/images/Brittany_film.jpg");
+    background-image: url("/static/images/Brittany_film.jpg");
     background-size: cover;
     background-repeat: no-repeat;
     background-position: center;
@@ -61,6 +61,22 @@ body::before {
 }
 
 /* Cards */
+.art-card {
+    background-color: #f9f7f1;
+    border: 1px solid #c8a978;
+    transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.5s ease;
+}
+
+.art-card:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+}
+
+.art-card:hover .art-img {
+    transform: scale(1.03);
+    border: 5px solid #d28232;
+}
+
 .contact-card {
     background-color: #f9f7f1;
     border: 1px solid #c8a978;
@@ -79,6 +95,16 @@ body::before {
 .writing-card:hover {
     box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
     transform: scale(1.02);
+}
+
+/* Images */
+.art-img {
+    border: 5px solid #c8a978;
+    transition: transform 0.4s ease, border-color 0.4s ease;
+}
+
+.padded-img {
+    padding: 1rem 1rem 0.5rem 1rem;
 }
 
 /* Navbar */
