@@ -60,11 +60,73 @@ body::before {
     max-width: 600px;
 }
 
+/* Carousel */
+#carousel-container {
+    max-width: 425px;
+    margin: 0 auto;
+    padding: 0.75rem;
+    border: 5px solid #c8a978;
+    border-radius: 10px;
+    background-color: #f9f7f1;
+    transition: box-shadow 0.3s ease, transform 0.3s ease;
+}
+
+#carousel-container .carousel-inner {
+    min-height: 500px; /* match the image height */
+}
+
+#carousel-container .carousel-item img {
+    width: 100%;
+    height: 500px;
+    object-fit: contain;
+    background-color: #f9f7f1;
+}
+
+#carousel-container:hover {
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+    transform: scale(1.02);
+}
+
+.carousel-item {
+  transition: transform 1s ease-in-out;
+}
+
+.carousel-caption {
+    position: absolute;
+    max-width: 70%;
+    margin: auto;
+    padding: 0;
+    background: rgba(0, 0, 0, 0.3); /* Dark translucent background */
+    border-radius: 0.5rem;
+    text-shadow: 0 1px 2px rgba(0,0,0,0.6);
+}
+
+@media (max-width: 768px) {
+    #carousel-container .carousel-item img {
+        height: 300px;
+    }
+    #carousel-container .carousel-inner {
+        min-height: 300px;
+    }
+}
+
+.carousel-heading {
+    color: #f9f7f1;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+}
+
+.carousel-description {
+    color: #f9f7f1;
+    font-size: 1rem;
+    font-weight: 400;
+}
+
 /* Cards */
 .art-card {
     background-color: #f9f7f1;
     border: 1px solid #c8a978;
-    transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.5s ease;
+    transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
 }
 
 .art-card:hover {
@@ -74,7 +136,12 @@ body::before {
 
 .art-card:hover .art-img {
     transform: scale(1.03);
-    border: 5px solid #d28232;
+    border-color: #d28232;
+}
+
+.art-card:hover .card-img-overlay {
+    opacity: 0.9;
+    transform: scale(1.03);
 }
 
 .contact-card {
@@ -95,71 +162,6 @@ body::before {
 .writing-card:hover {
     box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
     transform: scale(1.02);
-}
-
-/* Images */
-.art-img {
-    border: 5px solid #c8a978;
-    transition: transform 0.4s ease, border-color 0.4s ease;
-}
-
-.padded-img {
-    padding: 1rem 1rem 0.5rem 1rem;
-}
-
-/* Navbar */
-.navbar {
-    background-color: #f0ede7;
-}
-
-.navbar-brand:hover {
-    background-color: #964b00;
-    color: #f9f7f1;
-    border-color: #964b00;
-}
-
-.nav-link.active {
-    background-color: #c8a978;
-    color: #f9f7f1 !important;
-    font-weight: bold;
-}
-
-.nav-link:hover {
-    background-color: #c8a978;
-    color: #f9f7f1;
-}
-
-/* Links */
-a {
-    color: #496497;
-    text-decoration: none;
-    transition: color 0.3s ease, transform 0.3s ease;
-}
-
-a:hover {
-    color: #964b00;
-}
-
-.about-link {
-    position: relative;
-    display: inline-block;
-}
-
-.about-link::after {
-    content: '';
-    position: absolute;
-    left: 0;
-    bottom: 0;
-    height: 2px;
-    width: 100%;
-    background-color: #c8a978;
-    transform: scaleX(0);
-    transform-origin: center;
-    transition: transform 0.5s ease;
-}
-
-.about-link:hover::after {
-    transform: scaleX(1);
 }
 
 /* Footer */
@@ -201,6 +203,87 @@ h3:hover::after,
 h4:hover::after,
 h5:hover::after {
     transform: scaleX(0);
+}
+
+/* Images */
+.art-img {
+    border: 5px solid #c8a978;
+    display: block;
+    width: 100%;
+    transition: transform 0.4s ease, border-color 0.4s ease;
+}
+
+.card-img-overlay {
+    opacity: 0;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    padding: 0.5rem 1rem;             
+    background: rgba(0, 0, 0, 0.3);     /* Optional: dim background */
+    color: #f9f7f1;                     
+    display: flex;                        /* Optional: for vertical align */
+    align-items: flex-start;
+    transition: opacity 0.3s ease, transform 0.3s ease;
+}
+
+.padded-img {
+    padding: 1rem 1rem 0.5rem 1rem;
+}
+
+/* Links */
+a {
+    color: #496497;
+    text-decoration: none;
+    transition: color 0.3s ease, transform 0.3s ease;
+}
+
+a:hover {
+    color: #964b00;
+}
+
+.about-link {
+    position: relative;
+    display: inline-block;
+}
+
+.about-link::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    height: 2px;
+    width: 100%;
+    background-color: #c8a978;
+    transform: scaleX(0);
+    transform-origin: center;
+    transition: transform 0.5s ease;
+}
+
+.about-link:hover::after {
+    transform: scaleX(1);
+}
+
+/* Navbar */
+.navbar {
+    background-color: #f0ede7;
+}
+
+.navbar-brand:hover {
+    background-color: #964b00;
+    color: #f9f7f1;
+    border-color: #964b00;
+}
+
+.nav-link.active {
+    background-color: #c8a978;
+    color: #f9f7f1 !important;
+    font-weight: bold;
+}
+
+.nav-link:hover {
+    background-color: #c8a978;
+    color: #f9f7f1;
 }
 
 /* Transitions */
