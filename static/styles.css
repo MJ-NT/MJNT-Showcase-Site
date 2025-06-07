@@ -45,6 +45,11 @@ body::before {
     max-width: 1000px;
 }
 
+.about-container p {
+    line-height: 1.7;
+    font-size: 1.05rem;
+}
+
 .fiction-nav-container {
     background-color: #eeeeee;
     padding: 0;
@@ -60,6 +65,24 @@ body::before {
     max-width: 600px;
 }
 
+#index-container {
+    width: 900px;
+    height: 900px;
+    min-width: 300px;
+    min-height: 300px;
+    border-radius: 50%;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+}
+
+.index-box {
+    background-color: #f9f7f1;
+    opacity: 0.9;
+    margin: auto;
+    padding: 0.5rem;
+    border-radius: 25px;
+    max-width: 400px;
+}
+
 /* Carousel */
 #carousel-container {
     max-width: 425px;
@@ -68,7 +91,23 @@ body::before {
     border: 5px solid #c8a978;
     border-radius: 10px;
     background-color: #f9f7f1;
-    transition: box-shadow 0.3s ease, transform 0.3s ease;
+    opacity: 0;
+    transform: translateY(-20px);
+    max-height: 0;
+    overflow: hidden;
+    transition:
+        box-shadow 0.6s ease,
+        opacity 0.6s ease,
+        transform 0.6s ease,
+        max-height 0.6s ease;
+}
+
+/* When visible by js */
+#carousel-container.show {
+    opacity: 1;
+    transform: translateY(0);
+    max-height: 1000px; /* large enough to fit your carousels */
+    overflow: visible;
 }
 
 #carousel-container .carousel-inner {
@@ -93,7 +132,8 @@ body::before {
 
 .carousel-caption {
     position: absolute;
-    max-width: 70%;
+    max-width: 80%;
+    bottom: 1rem;
     margin: auto;
     padding: 0;
     background: rgba(0, 0, 0, 0.3); /* Dark translucent background */
@@ -206,7 +246,7 @@ h5:hover::after {
 }
 
 /* Images */
-.art-img {
+.art-card .art-img {
     border: 5px solid #c8a978;
     display: block;
     width: 100%;
@@ -286,7 +326,141 @@ a:hover {
     color: #f9f7f1;
 }
 
-/* Transitions */
+/* Sections */
+.section-divider {
+    border: none;
+    height: 3px;
+    width: 60%;
+    margin: 1.5rem auto;
+    background: linear-gradient(to right, #c8a978, transparent 50%, #c8a978);
+}
+
+.section-highlight {
+    background-color: #f9f7f1;
+    padding: 1rem 1.5rem 1rem 1.5rem;
+    border-left: 3px solid #c8a978;
+    margin: 1rem 0;
+    border-radius: 0.25rem;
+    transition: box-shadow 0.3s ease, transform 0.3s ease;
+}
+
+.section-highlight:hover {
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.06);
+    transform: translateY(-2px);
+}
+
+/* Index Moon Phases */
+.moon-chart {
+    position: relative;
+    width: 75%;
+    height: 75%;
+    margin: 2rem auto;
+    border-radius: 50%;
+    background-color: #f9f7f1;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    animation: clockwise-spin 80s linear infinite;
+}
+
+@keyframes clockwise-spin {
+    from { transform: rotate(0deg); }
+    to { transform: rotate(360deg); }
+}
+
+.moon-phase {
+    position: absolute;
+    width: 100px;
+    height: 100px;
+    background-color: #c8a978;
+    background-image: url("/static/images/Titanium_Moon_Miguel_Claro.jpg"); /* Replace with actual moon phase images */
+    background-size: contain;    /* or cover */
+    background-repeat: no-repeat;
+    background-position: center;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-decoration: none;
+    transform: rotate(var(--angle)) translate(250px);
+    transform-origin: center center;
+    transition: transform 0.5s ease, box-shadow 0.5s ease;
+}
+
+.moon-phase.centered {
+    top: 50%;
+    left: 50%;
+    z-index: 10;
+    transition: transform 0.3s ease;
+}
+
+/* Hover effect */
+.moon-phase:not(.centered):hover .moon-content {
+    transform: scale(1.2);
+    box-shadow: 0 0 12px rgba(0, 0, 0, 0.5);
+}
+
+.moon-phase:not(.centered).dimmed {
+    opacity: 0.6;
+    filter: grayscale(40%);
+    pointer-events: none;
+    transition: opacity 0.3s ease, filter 0.3s ease;
+}
+
+/* Phases in circle using polar coordinates (rotate + translate) */
+.phase-1 { --angle: 0deg; }
+.phase-2 { --angle: 45deg; }
+.phase-3 { --angle: 90deg; }
+.phase-4 { --angle: 135deg; }
+.phase-5 { --angle: 180deg; }
+.phase-6 { --angle: 225deg; }
+.phase-7 { --angle: 270deg; }
+.phase-8 { --angle: 315deg; }
+
+.moon-content {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    color: #f9f7f1;
+    font-size: 1.1rem;
+    font-weight: bold;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+/* Hover effect */
+.moon-phase:hover .moon-content {
+    transform: scale(1.2);
+    box-shadow: 0 0 12px rgba(0, 0, 0, 0.5);
+}
+
+.pale-blue-dot {
+    position: absolute;
+    width: 40%;
+    height: 40%;
+    background-color: #333333;
+    background-image: url("/static/images/pbd.jpg"); /* Replace with actual moon phase images */
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+    opacity: 90%;
+    border-radius: 50%;
+    box-shadow: 0 0 12px rgba(0, 0, 0, 0.5);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    animation: anticlockwise-spin 80s linear infinite;
+}
+
+@keyframes anticlockwise-spin {
+    from { transform: rotate(0deg); }
+    to { transform: rotate(-360deg); }
+}
+
+/* Body Transitions */
 body.fade-out {
     opacity: 0;
     transition: opacity 0.5s ease-out;
@@ -295,4 +469,70 @@ body.fade-out {
 body.fade-in {
     opacity: 1;
     transition: opacity 0.5s ease-in;
+}
+
+/* -----------------------------
+   Responsive layout for small screens
+   Preserves 900x900 design on desktop
+   Scales down proportionally on <950px
+----------------------------------- */
+@media (max-width: 950px) {
+    /* Resize main container */
+    #index-container {
+        width: 90vw;
+        height: 90vw;
+        max-width: 900px;
+        max-height: 900px;
+        min-width: 300px;
+        min-height: 300px;
+    }
+
+    /* Resize moon chart */
+    .moon-chart {
+        width: 80vw;
+        height: 80vw;
+        max-width: 675px;
+        max-height: 675px;
+    }
+
+    /* Resize individual moon phases */
+    .moon-phase {
+        width: 15vw;
+        height: 15vw;
+        max-width: 100px;
+        max-height: 100px;
+        transform: rotate(var(--angle)) translate(28vw);
+    }
+
+    /* Resize moon content text container */
+    .moon-content {
+        width: 9vw;
+        height: 9vw;
+        max-width: 80px;
+        max-height: 80px;
+        font-size: 2.5vw;
+    }
+
+    /* Resize central moon */
+    .pale-blue-dot {
+        width: 35vw;
+        height: 35vw;
+        max-width: 360px;
+        max-height: 360px;
+    }
+
+    /* Tweak text under the chart for readability */
+    .index-box {
+        width: 70vw;
+        height: auto;
+        max-width: 400px;
+    }
+
+    h2 {
+        font-size: 1.25rem;
+    }
+
+    p {
+        font-size: 0.75rem;
+    }
 }

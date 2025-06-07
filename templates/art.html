@@ -65,7 +65,7 @@
                 <div class="col-md-9 mb-3">
                     <div class="card art-card h-100">
                         <div class="position-relative">
-                            <img class="card-img-top art-img" src="/static/images/art/ttrpgs/ironsworn.jpg" alt="A pen drawing of Matthew Rhys from The Americans.">
+                            <img class="card-img-top art-img" src="/static/images/art/ttrpgs/ironsworn.jpg" alt="A pen drawing of a family: man with a beard, a younger girl, and a younger man.">
                             <div class="card-img-overlay">
                                 <h5 class="card-title">TTRPG Art</h5>
                             </div>
@@ -96,6 +96,13 @@
                         <div id="carousel-container" class="d-none">
                             <!-- Blades in the Dark Carousel -->
                             <div id="carousel-blades" class="carousel slide d-none" data-bs-ride="carousel" data-bs-interval="5000">
+                                <div class="carousel-indicators">
+                                    <button type="button" data-bs-target="#carousel-blades" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+                                    <button type="button" data-bs-target="#carousel-blades" data-bs-slide-to="1" aria-label="Slide 2"></button>
+                                    <button type="button" data-bs-target="#carousel-blades" data-bs-slide-to="2" aria-label="Slide 3"></button>
+                                    <button type="button" data-bs-target="#carousel-blades" data-bs-slide-to="3" aria-label="Slide 4"></button>
+                                    <button type="button" data-bs-target="#carousel-blades" data-bs-slide-to="4" aria-label="Slide 5"></button>
+                                </div>
                                 <div class="carousel-inner">
                                     <div class="carousel-item active">
                                         <img src="/static/images/art/ttrpgs/bitd/cp_dishonored.jpg" class="d-block w-100" alt="A pen drawing of Cédric Peyravernay's art from Dishonored 2 (2016).">
@@ -118,15 +125,24 @@
                                     </div>
                                 </div>
                                 <button class="carousel-control-prev" type="button" data-bs-target="#carousel-blades" data-bs-slide="prev">
-                                    <span class="carousel-control-prev-icon"></span>
+                                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                                    <span class="visually-hidden">Previous</span>
                                 </button>
                                 <button class="carousel-control-next" type="button" data-bs-target="#carousel-blades" data-bs-slide="next">
-                                    <span class="carousel-control-next-icon"></span>
+                                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                                    <span class="visually-hidden">Next</span>
                                 </button>
                             </div>
 
                             <!-- High Water Carousel -->
                             <div id="carousel-high-water" class="carousel slide d-none" data-bs-ride="carousel" data-bs-interval="5000">
+                                <div class="carousel-indicators">
+                                    <button type="button" data-bs-target="#carousel-high-water" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+                                    <button type="button" data-bs-target="#carousel-high-water" data-bs-slide-to="1" aria-label="Slide 2"></button>
+                                    <button type="button" data-bs-target="#carousel-high-water" data-bs-slide-to="2" aria-label="Slide 3"></button>
+                                    <button type="button" data-bs-target="#carousel-high-water" data-bs-slide-to="3" aria-label="Slide 4"></button>
+                                    <button type="button" data-bs-target="#carousel-high-water" data-bs-slide-to="4" aria-label="Slide 5"></button>
+                                </div>
                                 <div class="carousel-inner">
                                     <div class="carousel-item active">
                                         <img src="/static/images/art/ttrpgs/high_water/castor.jpg" class="d-block w-100" alt="A pen drawing of a tiefling.">
@@ -148,16 +164,22 @@
                                         <img src="/static/images/art/ttrpgs/high_water/roidh.jpg" class="d-block w-100" alt="A stylised pen drawing of a man with a crow mask.">
                                     </div>
                                 </div>
-                                <button class="carousel-control-prev" type="button" data-bs-target="#carousel-high" data-bs-slide="prev">
-                                    <span class="carousel-control-prev-icon"></span>
+                                <button class="carousel-control-prev" type="button" data-bs-target="#carousel-high-water" data-bs-slide="prev">
+                                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                                    <span class="visually-hidden">Previous</span>
                                 </button>
-                                <button class="carousel-control-next" type="button" data-bs-target="#carousel-high" data-bs-slide="next">
-                                    <span class="carousel-control-next-icon"></span>
+                                <button class="carousel-control-next" type="button" data-bs-target="#carousel-high-water" data-bs-slide="next">
+                                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                                    <span class="visually-hidden">Next</span>
                                 </button>
                             </div>
 
                             <!-- Others Carousel -->
                             <div id="carousel-others" class="carousel slide d-none" data-bs-ride="carousel" data-bs-interval="5000">
+                                <div class="carousel-indicators">
+                                    <button type="button" data-bs-target="#carousel-others" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+                                    <button type="button" data-bs-target="#carousel-others" data-bs-slide-to="1" aria-label="Slide 2"></button>
+                                </div>
                                 <div class="carousel-inner">
                                     <div class="carousel-item active">
                                         <img src="/static/images/art/ttrpgs/kasu.jpg" class="d-block w-100" alt="A pen drawing of a medical droid.">
@@ -173,10 +195,12 @@
                                     </div>
                                 </div>
                                 <button class="carousel-control-prev" type="button" data-bs-target="#carousel-others" data-bs-slide="prev">
-                                    <span class="carousel-control-prev-icon"></span>
+                                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                                    <span class="visually-hidden">Previous</span>
                                 </button>
                                 <button class="carousel-control-next" type="button" data-bs-target="#carousel-others" data-bs-slide="next">
-                                    <span class="carousel-control-next-icon"></span>
+                                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                                    <span class="visually-hidden">Next</span>
                                 </button>
                             </div>
                         </div>
