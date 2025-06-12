@@ -26,21 +26,36 @@ document.addEventListener("DOMContentLoaded", () => {
 
     carouselButtons.forEach(button => {
         button.addEventListener("click", () => {
+            // Remove active class from btn
+            carouselButtons.forEach((btn) => {
+                btn.classList.remove("active");
+            });
+
+            // Add active class to current btn
+            button.classList.add("active");
+
             const targetCarouselId = button.getAttribute("data-carousel");
             const targetCarousel = document.getElementById(targetCarouselId);
 
+            // Handle case where targetCarousel doesn't exist
             if (!targetCarousel) return;
 
             // If the same button is clicked again, collapse the container
             if (currentCarouselId === targetCarouselId) {
                 carouselContainer.classList.remove("show");
 
+                // Remove active class from btn
+                button.classList.remove("active");
+
                 currentCarouselId = null;
                 return;
             }
 
+            // Ensure carousels are initially hidden
+            carousels.forEach((carousel) => {
+                carousel.classList.add("d-none");
+            });
             // Show the selected carousel
-            carousels.forEach(c => c.classList.add("d-none"));
             targetCarousel.classList.remove("d-none");
 
             // Animate the container open if needed
@@ -58,14 +73,13 @@ document.addEventListener("DOMContentLoaded", () => {
     });
 
     // Moon phase logic
-    const moonChart = document.querySelector('.moon-chart');
     const moonPhases = document.querySelectorAll('.moon-phase');
     let centeredPhase = null;
 
     const rotationDuration = 80000; // 80s for full rotation
 
     function updateRotation() {
-        if (!centeredPhase) return; // no centered moon, no counter rotation
+        if (!centeredPhase) return; // if no centered moon, no counter rotation necessary
 
         const elapsed = performance.now() % rotationDuration;
         const degrees = (elapsed / rotationDuration) * 360;
@@ -94,10 +108,13 @@ document.addEventListener("DOMContentLoaded", () => {
                 }
             } else {
                 moonPhases.forEach(p => {
+                    // remove centered and dimmed for all phases
                     p.classList.remove('centered', 'dimmed');
+                    // if the phase isn't the one centered, dim it
                     if (p !== phase) p.classList.add('dimmed');
                     p.style.transform = ''; // reset transform on others
                 });
+                // Add the centered class to the phase clicked
                 phase.classList.add('centered');
                 centeredPhase = phase;
 

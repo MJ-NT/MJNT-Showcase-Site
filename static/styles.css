@@ -21,11 +21,6 @@ body::before {
     z-index: -1;  /* Send it behind body content */
 }
 
-main {
-    overflow: hidden; /* Prevent main from expanding due to chart movement */
-    
-}
-
 /* Buttons */
 .btn {
     background-color: #c8a978;
@@ -34,6 +29,12 @@ main {
 }
 
 .btn:hover {
+    background-color: #964b00;
+    color: #f9f7f1;
+    border-color: #964b00;
+}
+
+.ttrpg-link.active {
     background-color: #964b00;
     color: #f9f7f1;
     border-color: #964b00;
@@ -69,20 +70,29 @@ main {
     max-width: 1000px;
 }
 
-.transparent-container {
-    background-color: rgba(255, 255, 255, 0.0); /* light semi-transparent background */
-}
-
 #contact-container {
     max-width: 600px;
 }
 
+/* Index Page wrapper container */
+.transparent-container {
+    background-color: rgba(255, 255, 255, 0.0); /* transparent background */
+    max-height: 1400px;
+    overflow: hidden; /* Prevent main from expanding on index page due to chart rotation */
+}
+
 #index-container {
     position: relative;
-    width: 1000px;
-    height: 1000px;
+    aspect-ratio: 1 / 1; /* Maintain square aspect ratio */
+    width: 100%;
+    max-width: 900px;
     min-width: 300px;
     min-height: 300px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
     border-radius: 50%;
     box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
     background-color: rgba(255, 255, 255, 0.6); /* light semi-transparent background */
@@ -90,17 +100,16 @@ main {
 
 .index-box {
     position: relative;
-    background-color: #f9f7f1;
-    opacity: 0.9;
+    background-color: rgba(255, 255, 255, 0.9);
     margin: 1rem auto 1rem auto;
     padding: 0.25rem;
     border-radius: 25px;
-    max-width: 400px;
+    max-width: 450px;
 }
 
 /* Carousel */
 #carousel-container {
-    max-width: 425px;
+    max-width: 450px;
     margin: 0 auto;
     padding: 0.75rem;
     border: 5px solid #c8a978;
@@ -117,32 +126,28 @@ main {
         max-height 0.6s ease;
 }
 
-/* When visible by js */
+/* When made visible by js */
 #carousel-container.show {
     opacity: 1;
     transform: translateY(0);
-    max-height: 1000px; /* large enough to fit your carousels */
+    max-height: 1000px;
     overflow: visible;
 }
 
 #carousel-container .carousel-inner {
-    min-height: 500px; /* match the image height */
+    min-height: 500px; /* to match image height */
 }
 
 #carousel-container .carousel-item img {
     width: 100%;
     height: 500px;
     object-fit: contain;
-    background-color: #f9f7f1;
+    background-color: #c8a978;
 }
 
 #carousel-container:hover {
     box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
     transform: scale(1.02);
-}
-
-.carousel-item {
-  transition: transform 1s ease-in-out;
 }
 
 .carousel-caption {
@@ -154,15 +159,6 @@ main {
     background: rgba(0, 0, 0, 0.3); /* Dark translucent background */
     border-radius: 0.5rem;
     text-shadow: 0 1px 2px rgba(0,0,0,0.6);
-}
-
-@media (max-width: 768px) {
-    #carousel-container .carousel-item img {
-        height: 300px;
-    }
-    #carousel-container .carousel-inner {
-        min-height: 300px;
-    }
 }
 
 .carousel-heading {
@@ -177,11 +173,24 @@ main {
     font-weight: 400;
 }
 
+/* Responsive scaling for carousel */
+@media (max-width: 768px) {
+    #carousel-container .carousel-item img {
+        height: 300px;
+    }
+    #carousel-container .carousel-inner {
+        min-height: 300px;
+    }
+}
+
 /* Cards */
 .art-card {
     background-color: #f9f7f1;
     border: 1px solid #c8a978;
-    transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
+    transition: 
+        transform 0.3s ease,
+        box-shadow 0.3s ease,
+        border-color 0.3s ease;
 }
 
 .art-card:hover {
@@ -212,6 +221,9 @@ main {
 .writing-card {
     background-color: #f9f7f1;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    transition: 
+        transform 0.3s ease,
+        box-shadow 0.3s ease;
 }
 
 .writing-card:hover {
@@ -225,17 +237,28 @@ main {
     color: #444444;
     bottom: 0;
     left: 0;
-    width: 100%;
+    width: 50%;
     z-index: 10;
+    margin: 0 auto;
     padding: 0.5rem;
+    border-top-left-radius: 50%;
+    border-top-right-radius: 50%;
+}
+
+@media (max-width: 768px) {
+    .footer {
+        width: 100%;
+        border-radius: 0;
+    }
 }
 
 /* Headings */
 h1, h2, h3, h4, h5 {
     color: #2c2c2c;
     font-family: 'Palatino Linotype', 'Book Antiqua', 'Palatino', serif;
+    margin-bottom: 0.75rem;
     padding: 0.25rem 0 0.5rem 0;
-    display: inline-block; /* Will limit hover to text area */
+    display: inline-block; /* Limit hover to text area */
     position: relative;
     transition: color 0.5s ease;
 }
@@ -247,10 +270,12 @@ h4::after,
 h5::after {
     content: '';
     position: absolute;
-    left: 0;
-    bottom: 0;
+    /* Center the underline and bring up from bottom */
+    left: 5%;
+    right: 5%;
+    bottom: 5%;
     height: 3px;
-    width: 100%;
+    width: 90%;
     background-color: #c8a978;
     transform: scaleX(1);
     transform-origin: center;
@@ -270,7 +295,7 @@ h5:hover::after {
     border: 5px solid #c8a978;
     display: block;
     width: 100%;
-    transition: transform 0.4s ease, border-color 0.4s ease;
+    transition: transform 0.3s ease, border-color 0.3s ease;
 }
 
 .card-img-overlay {
@@ -280,9 +305,9 @@ h5:hover::after {
     right: 0;
     bottom: 0;
     padding: 0.5rem 1rem;             
-    background: rgba(0, 0, 0, 0.3);     /* Optional: dim background */
-    color: #f9f7f1;                     
-    display: flex;                        /* Optional: for vertical align */
+    background: rgba(0, 0, 0, 0.3);
+    color: #f9f7f1;
+    display: flex;
     align-items: flex-start;
     transition: opacity 0.3s ease, transform 0.3s ease;
 }
@@ -329,16 +354,28 @@ a:hover {
     background-color: #f0ede7;
 }
 
+.navbar-brand {
+    margin: 0 0.5rem;
+    padding: 0.5rem 0.5rem;
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
 .navbar-brand:hover {
     background-color: #964b00;
     color: #f9f7f1;
-    border-color: #964b00;
 }
 
-.nav-link.active {
+.navbar-nav .nav-link.active {
     background-color: #c8a978;
-    color: #f9f7f1 !important;
+    color: #f9f7f1;
     font-weight: bold;
+}
+
+
+.navbar-nav .nav-link {
+    margin: 0.25rem 0.75rem;
+    padding: 0.5rem 0.75rem;
+    transition: background-color 0.3s ease, color 0.3s ease;
 }
 
 .nav-link:hover {
@@ -372,9 +409,10 @@ a:hover {
 /* Index Moon Phases */
 .moon-chart {
     position: relative;
-    width: 80%;
-    height: 80%;
-    max-height: 100vh;
+    aspect-ratio: 1 / 1;
+    width: 85%;
+    max-width: 900px;
+    bottom: 5%; /* Adjusted to push chart up for nicer design */
     margin: 1rem auto;
     border-radius: 50%;
     background-color: #f9f7f1;
@@ -399,9 +437,9 @@ a:hover {
     align-items: center;
     justify-content: center;
     text-decoration: none;
-    transform: rotate(var(--angle)) translate(290px);
+    transform: rotate(var(--angle)) translate(280px);
     transform-origin: center center;
-    transition: transform 0.5s ease, box-shadow 0.5s ease;
+    transition: transform 1.5s ease, box-shadow 0.5s ease, opacity 0.5s ease, filter 0.5s ease;
 }
 
 @keyframes clockwise-spin {
@@ -413,7 +451,7 @@ a:hover {
     top: 50%;
     left: 50%;
     z-index: 10;
-    transition: transform 0.3s ease, box-shadow 1s ease;
+    transition: transform 0.4s ease, box-shadow 1s ease;
 }
 
 /* Hover effect */
@@ -427,7 +465,7 @@ a:hover {
     opacity: 0.6;
     filter: grayscale(40%);
     pointer-events: none;
-    transition: opacity 0.3s ease, filter 0.3s ease;
+    transition: opacity 0.5s ease, filter 0.5s ease;
 }
 
 /* Phases in circle using polar coordinates (rotate + translate) */
@@ -461,13 +499,14 @@ a:hover {
 
 .pale-blue-dot {
     position: absolute;
+    aspect-ratio: 1 / 1;
     width: 40%;
-    height: 40%;
+    height: auto;
     background-image: url("/static/images/pbd.jpg");
     background-size: cover;
     background-repeat: no-repeat;
     background-position: center;
-    opacity: 90%;
+    opacity: 0.9;
     border-radius: 50%;
     box-shadow: 0 0 12px rgba(0, 0, 0, 0.5);
     display: flex;
@@ -494,7 +533,8 @@ body.fade-in {
 
 /* Responsive layout for small screens */
 @media (max-width: 950px) {
-    /* Resize main container */
+    
+    /* Index Page */
     #index-container {
         width: 100svw;
         height: auto;
@@ -503,7 +543,6 @@ body.fade-in {
         min-width: 200px;
         min-height: 200px;
         margin: 1rem auto 1rem auto;
-        border-radius: 10%;
     }
 
     /* Resize moon chart */
@@ -532,7 +571,6 @@ body.fade-in {
         font-size: 3vw;
     }
 
-    /* Resize central moon */
     .pale-blue-dot {
         width: 30vw;
         height: 30vw;
@@ -545,10 +583,14 @@ body.fade-in {
         width: 80vw;
         height: auto;
         max-width: 400px;
-        margin: 0 auto 0 auto;
+        margin: 0 auto 0.5rem auto;
     }
 
-    h2 {
-        font-size: 1.1rem;
+    .index-box h3 {
+        font-size: 1.2rem;
+    }
+
+    .index-box p {
+        font-size: 0.9rem;
     }
 }
