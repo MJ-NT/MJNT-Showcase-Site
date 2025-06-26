@@ -70,8 +70,16 @@ body::before {
     max-width: 1000px;
 }
 
+/* Katabasis text container centred vertically within card-body*/
+.katabasis-text-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    height: 100%;
+}
+
 #contact-container {
-    max-width: 600px;
+    max-width: 550px;
 }
 
 /* Index Page wrapper container */
@@ -218,6 +226,24 @@ body::before {
     box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
 }
 
+.katabasis-card {
+    background-color: #f9f7f1;
+    border: 3px solid #c8a978;
+    min-height: 400px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+
+}
+
+.katabasis-card:hover {
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+    transform: translateY(5px);
+    cursor: pointer;
+}
+
 .writing-card {
     background-color: #f9f7f1;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
@@ -288,6 +314,12 @@ h3:hover::after,
 h4:hover::after,
 h5:hover::after {
     transform: scaleX(0);
+}
+
+.katabasis-heading {
+    /* Centre within katabasis-card */
+    position: relative;
+    top: 40%;
 }
 
 /* Images */
@@ -437,7 +469,7 @@ a:hover {
     align-items: center;
     justify-content: center;
     text-decoration: none;
-    transform: rotate(var(--angle)) translate(280px);
+    transform: rotate(var(--angle)) translateY(-280px);
     transform-origin: center center;
     transition: transform 1.5s ease, box-shadow 0.5s ease, opacity 0.5s ease, filter 0.5s ease;
 }
@@ -460,12 +492,16 @@ a:hover {
     cursor: pointer;
 }
 
+/* Hover effect for centered moon phase*/
+.moon-phase.centered:hover {
+    box-shadow: 0 0 15px 8px rgba(255, 255, 255, 0.6);
+    cursor: pointer;
+}
 
 .moon-phase:not(.centered).dimmed {
     opacity: 0.6;
     filter: grayscale(40%);
     pointer-events: none;
-    transition: opacity 0.5s ease, filter 0.5s ease;
 }
 
 /* Phases in circle using polar coordinates (rotate + translate) */
@@ -488,13 +524,6 @@ a:hover {
     color: #f9f7f1;
     font-size: 1.4rem;
     font-weight: bold;
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
-}
-
-/* Hover effect */
-.moon-phase.centered:hover {
-    box-shadow: 0 0 15px 8px rgba(255, 255, 255, 0.6);
-    cursor: pointer;
 }
 
 .pale-blue-dot {

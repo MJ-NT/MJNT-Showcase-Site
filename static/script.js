@@ -133,4 +133,33 @@ document.addEventListener("DOMContentLoaded", () => {
             centeredPhase = null;
         }
     });
+
+    // Katabasis card logic to display katabasis-text-container
+    const katabasisCards = document.querySelectorAll('.katabasis-card');
+
+    katabasisCards.forEach(card => {
+        card.addEventListener('click', () => {
+            const textContainer = card.querySelector('.katabasis-text-container');
+            const heading = card.querySelector('.katabasis-heading');
+
+            if (textContainer.classList.contains('d-none')) {
+                // Hide all other text containers
+                katabasisCards.forEach(c => {
+                    const otherTextContainer = c.querySelector('.katabasis-text-container');
+                    const otherHeading = c.querySelector('.katabasis-heading');
+                    
+                    otherTextContainer.classList.add('d-none');
+                    otherHeading.classList.remove('d-none');
+                });
+
+                // Show the clicked text container and hide its heading
+                textContainer.classList.remove('d-none');
+                heading.classList.add('d-none');
+            } else {
+                // Hide the clicked text container and show its heading
+                textContainer.classList.add('d-none');
+                heading.classList.remove('d-none');
+            }
+        });
+    });
 });
