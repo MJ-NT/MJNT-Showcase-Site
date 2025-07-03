@@ -134,31 +134,37 @@ document.addEventListener("DOMContentLoaded", () => {
         }
     });
 
-    // Katabasis card logic to display katabasis-text-container
+    // Katabasis card logic to center the card and display katabasis-text-container
     const katabasisCards = document.querySelectorAll('.katabasis-card');
 
     katabasisCards.forEach(card => {
         card.addEventListener('click', () => {
             const textContainer = card.querySelector('.katabasis-text-container');
             const heading = card.querySelector('.katabasis-heading');
+            
+            const isCentered = card.classList.contains('center');
 
-            if (textContainer.classList.contains('d-none')) {
-                // Hide all other text containers
-                katabasisCards.forEach(c => {
-                    const otherTextContainer = c.querySelector('.katabasis-text-container');
-                    const otherHeading = c.querySelector('.katabasis-heading');
-                    
-                    otherTextContainer.classList.add('d-none');
-                    otherHeading.classList.remove('d-none');
-                });
-
-                // Show the clicked text container and hide its heading
-                textContainer.classList.remove('d-none');
-                heading.classList.add('d-none');
+            // Uncenter the other cards, hide all other text containers and show their headings when clicking on a different card
+            katabasisCards.forEach(c => {
+                const otherText = c.querySelector('.katabasis-text-container');
+                const otherHeading = c.querySelector('.katabasis-heading');
+                
+                c.classList.remove('center');
+                otherText.classList.remove('show');
+                otherHeading.classList.remove('hidden');
+            });
+    
+            if (!isCentered) {
+                // Center the card
+                card.classList.add('center');
+                textContainer.classList.add('show');
+                heading.classList.add('hidden');
+    
             } else {
-                // Hide the clicked text container and show its heading
-                textContainer.classList.add('d-none');
-                heading.classList.remove('d-none');
+                // Uncenter the card
+                card.classList.remove('center');
+                textContainer.classList.remove('show');
+                heading.classList.remove('hidden');
             }
         });
     });
