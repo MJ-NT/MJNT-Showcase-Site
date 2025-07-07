@@ -275,6 +275,7 @@ body::before {
 .footer {
     background-color: #f0ede7;
     color: #444444;
+    text-align: center;
     bottom: 0;
     left: 0;
     width: 50%;
@@ -287,8 +288,7 @@ body::before {
 
 @media (max-width: 768px) {
     .footer {
-        width: 100%;
-        border-radius: 0;
+        width: 75%;
     }
 }
 
@@ -417,6 +417,10 @@ a:hover {
 .navbar-brand:hover {
     background-color: #964b00;
     color: #f9f7f1;
+}
+
+.navbar-toggler {
+    margin: 0 0.5rem;
 }
 
 .navbar-nav .nav-link.active {
